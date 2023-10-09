@@ -84,6 +84,8 @@ public class Main {
 
     public static void mainLogin(){
         User user = loginUser();
+        System.out.println("Merge Conflict");
+        System.out.println("Merge Conflict");
         switch (user.getRole()) {
             case ADMIN: adminMenu();
                 break;
