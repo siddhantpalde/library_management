@@ -85,6 +85,8 @@ public class Main {
 
     public static void mainLogin(){
         User user = loginUser();
+        System.out.println("Merge Conflict");
+        System.out.println("Merge Conflict");
         if(user != null) {
             try {
                 switch (user.getRole()) {
