@@ -5,6 +5,7 @@ import org.example.entity.Book;
 import org.example.entity.User;
 import org.example.service.AdminService;
 import org.example.service.AdminServiceImpl;
+import org.example.utility.InputReader;
 
 import java.util.*;
 
@@ -69,7 +70,7 @@ public class Data {
     }
 
     public static void printIssueBook(){
-        if(issueBook==null){
+        if(issueBook.size() == 0){
             System.out.println("No Books Issued ");
         }else {
             for (Map.Entry<String, User> entry : issueBook.entrySet()){
@@ -130,7 +131,6 @@ public class Data {
     public static void removeUser(String userId){
         String choice;
         User user1 = null;
-        Scanner scanner = new Scanner(System.in);
         for (User user : users){
             if ((user.getUserId()).equals(userId)){
                 user1 = user;
@@ -140,7 +140,7 @@ public class Data {
                 +"User Name : "+user1.getUsername()
                 +"\nEmail Id : "+user1.getEmailId()
                 +"\nUser Type : "+user1.getRole());
-        choice = scanner.next();
+        choice = InputReader.getString();
         if( choice.charAt(0) == 'y' || choice.charAt(0) == 'Y' ){
             delUser(user1);
         }
@@ -150,7 +150,7 @@ public class Data {
         System.out.println("User Succesfully removed");
     }
     private static void searchIssued(User user){
-        User userr = new User();
+        User userr;
         Book book1 = new Book();
         for(Map.Entry<String,User> entry : issueBook.entrySet()){
             userr = entry.getValue();

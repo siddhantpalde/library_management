@@ -6,6 +6,7 @@ import org.example.entity.Book;
 import org.example.entity.User;
 import org.example.entity.UserType;
 import org.example.service.*;
+import org.example.utility.InputReader;
 
 public class Main {
 
@@ -13,7 +14,7 @@ public class Main {
         addInitialData();
         addAllUsers();
         mainLogin();
-
+        LibrarianService.myMethod();
 //TODO:
 /*
 * student menu
@@ -27,7 +28,7 @@ public class Main {
  * */
     }
 
-    private static void adminMenu() {
+    private static void adminMenu() throws Exception {
         AdminService adminService = new AdminServiceImpl();
         adminService.menu();
     }
@@ -41,13 +42,13 @@ public class Main {
         studentService.studentMenu(user);
     }
     private static User loginUser() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter username:");
-        String username = scanner.next();
+        String username = InputReader.getString();
 
         System.out.println("Enter password:");
-        String password = scanner.next();
+        String password = InputReader.getString();
 
+        System.out.println("_"+username+"_"+password+"_");
         LoginService loginService = new LoginServiceImpl();
         return loginService.login(username,password);
     }
@@ -86,16 +87,31 @@ public class Main {
         User user = loginUser();
         System.out.println("Merge Conflict");
         System.out.println("Merge Conflict");
-        switch (user.getRole()) {
-            case ADMIN: adminMenu();
-                break;
-            case LIBRARIAN: librarianMenu();
-                break;
-            case STUDENT: studentMenu(user);
-                break;
-            case TEACHER:
-                break;
-
+        if(user != null) {
+            try {
+                switch (user.getRole()) {
+                    case ADMIN:
+                        adminMenu();
+                        break;
+                    case LIBRARIAN:
+                        librarianMenu();
+                        break;
+                    case STUDENT:
+                        studentMenu(user);
+                        break;
+                    case TEACHER:
+                        break;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Null pointer exception:"+e);
+            } catch (Exception e) {
+                System.out.println(" Exception exception");
+            } finally {
+                mainLogin();
+            }
+        } else {
+            System.out.println("Wrong credentials");
+            mainLogin();
         }
     }
 }
