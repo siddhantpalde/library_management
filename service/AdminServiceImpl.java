@@ -1,13 +1,13 @@
 package org.example.service;
 
 import org.example.Main;
+import org.example.utility.InputReader;
 
-import java.util.Scanner;
 
 public class AdminServiceImpl implements AdminService {
     @Override
     public void menu() {
-        Scanner scanner = new Scanner(System.in);
+        ;;;;;;;
         BookService addMultipleService = new BookServiceImpl();
         UserService userService = new UserServiceImpl();
         int choice;
@@ -17,7 +17,7 @@ public class AdminServiceImpl implements AdminService {
             System.out.println("3.Show all Users");
             System.out.println("4.Print all Issued Books");
             System.out.println("5.Logout");
-            choice = scanner.nextInt();
+            choice = InputReader.getNumbers();
 
             switch (choice){
                 case 1:

@@ -3,30 +3,30 @@ package org.example.service;
 import org.example.database.Data;
 import org.example.entity.User;
 import org.example.entity.UserType;
+import org.example.utility.InputReader;
+
 import java.util.List;
 import java.util.Base64;
-import java.util.Scanner;
 
 
 public class UserServiceImpl implements UserService {
     @Override
     public void addUserDetails(){
-        User user = new User();
-        Scanner scanner = new Scanner(System.in);
+        User user;
 
         System.out.println("Enter UserName For New User : ");
-        String name = scanner.next();
+        String name = InputReader.getString();
         System.out.println("Enter PassWord");
-        String password = scanner.next();
+        String password = InputReader.getString();
         System.out.println("Enter Role : ");
         System.out.println("\t1.ADMIN");
         System.out.println("\t2.LIBRARIAN");
         System.out.println("\t3.STUDENT");
         System.out.println("\t4.TEACHER");
         System.out.println("Enter your choice : ");
-        int role = scanner.nextInt();
+        int role = InputReader.getNumbers();
         System.out.println("Enter Email id :");
-        String email = scanner.next();
+        String email = InputReader.getString();
         if(!Data.checkUserByEmail(email)){
             user = new User(name,password,assignUserType(role),email);
             addUser(user);
@@ -66,9 +66,8 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public void deleteUser(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter User Id to Delete :");
-        String userId = scanner.next();
+        String userId = InputReader.getString();
         Data.delUserFromDb(userId);
     }
     @Override
@@ -83,10 +82,9 @@ public class UserServiceImpl implements UserService {
         List<User> userList = Data.getUsers();
         boolean flag = false;
         User user=new User();
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter User ID : ");
-        String id = scanner.next();
+        String id = InputReader.getString();
 
         for (User users : userList){
             if((users.getUserId()).equals(id)){

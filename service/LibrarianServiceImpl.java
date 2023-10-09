@@ -1,13 +1,17 @@
 package org.example.service;
 
 import org.example.Main;
-
-import java.util.Scanner;
+import org.example.utility.InputReader;
 
 public class LibrarianServiceImpl implements LibrarianService{
+
+    @Override
+    public void defaultMethod() {
+
+    }
+
     @Override
     public void menu(){
-        Scanner scanner = new Scanner(System.in);
         BookService addMultipleService = new BookServiceImpl();
         int choice;
         do {
@@ -19,7 +23,7 @@ public class LibrarianServiceImpl implements LibrarianService{
             System.out.println("6.Delete User");
             System.out.println("7.Logout");
 
-            choice = scanner.nextInt();
+            choice = InputReader.getNumbers();
 
             switch (choice){//return book remaining
                 case 1:

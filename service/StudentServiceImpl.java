@@ -2,13 +2,12 @@ package org.example.service;
 
 import org.example.Main;
 import org.example.entity.User;
+import org.example.utility.InputReader;
 
-import java.util.Scanner;
 
 public class StudentServiceImpl implements StudentService{
     @Override
     public void studentMenu(User user){
-        Scanner scanner = new Scanner(System.in);
         BookService bookService = new BookServiceImpl();
         int choice;
         do {
@@ -17,7 +16,7 @@ public class StudentServiceImpl implements StudentService{
             System.out.println("1.Show Issued Books");
             System.out.println("2.Show Avaliable Books");
             System.out.println("4.Logout");
-            choice = scanner.nextInt();
+            choice = InputReader.getNumbers();
 
             switch (choice){
                 case 1:
