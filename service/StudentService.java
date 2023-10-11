@@ -1,6 +1,6 @@
-package org.example.service;
+package org.library_management.service;
 
-import org.example.entity.User;
+import org.library_management.entity.User;
 
 public interface StudentService {
     public void studentMenu(User user);

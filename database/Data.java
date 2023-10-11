@@ -1,10 +1,10 @@
-package org.example.database;
+package org.library_management.database;
 
-import org.example.entity.Author;
-import org.example.entity.Book;
-import org.example.entity.User;
-import org.example.service.AdminService;
-import org.example.service.AdminServiceImpl;
+import org.library_management.entity.Author;
+import org.library_management.entity.Book;
+import org.library_management.entity.User;
+import org.library_management.service.AdminService;
+import org.library_management.service.AdminServiceImpl;
 
 import java.util.*;
 

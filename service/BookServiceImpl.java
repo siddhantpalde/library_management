@@ -1,9 +1,9 @@
-package org.example.service;
+package org.library_management.service;
 
 import java.util.*;
-import org.example.database.Data;
-import org.example.entity.Book;
-import org.example.entity.User;
+import org.library_management.database.Data;
+import org.library_management.entity.Book;
+import org.library_management.entity.User;
 
 
 public class BookServiceImpl implements BookService {
@@ -47,6 +47,9 @@ public class BookServiceImpl implements BookService {
         System.out.println("Enter Price of Book : ");
         price = scanner.nextDouble();
         scanner.nextLine();
+        System.out.flush();
+      //  Runtime.getRuntime().exec("clear");
+        System.out.println("Flush done!!!");
         bookService.addBook(new Book(bookName,price,authorName));
     }
 

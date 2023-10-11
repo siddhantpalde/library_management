@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.library_management.entity;
 
 public class Author {
     private String authorName;
