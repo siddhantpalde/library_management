@@ -5,6 +5,7 @@ import org.example.entity.User;
 import org.example.entity.UserType;
 import org.example.utility.InputReader;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Base64;
 
@@ -27,16 +28,17 @@ public class UserServiceImpl implements UserService {
         int role = InputReader.getNumbers();
         System.out.println("Enter Email id :");
         String email = InputReader.getString();
-        if(!Data.checkUserByEmail(email)){
+//        if(!Data.checkUserByEmail(email)){
             user = new User(name,password,assignUserType(role),email);
             addUser(user);
-            System.out.println("User Succesfully added as \n"
-                            +"\nUser ID : "+ user.getUserId()
-                            + "\nUser Name"+name
-                            +"\nEmail Id : "+user.getEmailId()
-                            +" \nUser Type : " +assignUserType(role)
-                    );
-        }
+//            System.out.println("User Succesfully added as \n"
+//                            +"\nUser ID : "+ user.getUserId()
+//                            + "\nUser Name"+name
+//                            +"\nEmail Id : "+user.getEmailId()
+//                            +" \nUser Type : " +assignUserType(role)
+//                    );
+//        }
+
 
     }
     @Override
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encodedPassword);
         String newUserId = "User_"+System.nanoTime();
         user.setUserId(newUserId);
-        Data.addUser(user);
+        Data.insertUser(user);
     }
     @Override
     public UserType assignUserType(int role){
@@ -65,10 +67,10 @@ public class UserServiceImpl implements UserService {
         return userRole;
     }
     @Override
-    public void deleteUser(){
-        System.out.println("Enter User Id to Delete :");
-        String userId = InputReader.getString();
-        Data.delUserFromDb(userId);
+    public void deleteUser() throws SQLException {
+//        System.out.println("Enter User Id to Delete :");
+//        String userId = InputReader.getString();
+        Data.delUserFromDb();
     }
     @Override
     public void printAllUsers(){
@@ -101,5 +103,9 @@ public class UserServiceImpl implements UserService {
             System.out.println("NO user Found");
         }
         return user;
+    }
+    @Override
+    public void printUsers(){
+        Data.printAllUsers();
     }
 }

@@ -11,8 +11,9 @@ import org.example.utility.InputReader;
 public class Main {
 
     public static void main(String[] args) {
-        addInitialData();
-        addAllUsers();
+//        addInitialData();
+        Data.initiateDb();
+//        addAllUsers();
         mainLogin();
         LibrarianService.myMethod();
 //TODO:
@@ -42,30 +43,31 @@ public class Main {
         studentService.studentMenu(user);
     }
     private static User loginUser() {
-        System.out.println("Enter username:");
+        System.out.println("\n!!!! USER LOGIN !!!!\n");
+        System.out.print("Enter username:");
         String username = InputReader.getString();
 
-        System.out.println("Enter password:");
+        System.out.print("Enter password:");
         String password = InputReader.getString();
 
-        System.out.println("_"+username+"_"+password+"_");
+//        System.out.println("_"+username+"_"+password+"_");
         LoginService loginService = new LoginServiceImpl();
         return loginService.login(username,password);
     }
 
-    private static void addAllUsers() {
-        UserService userService = new UserServiceImpl();
-        userService.addUser(new User("popatpalde","popatpalde", UserType.LIBRARIAN,
-                "popatpalde@gmail.com"));
-        userService.addUser(new User("pramilapalde","pramilapalde", UserType.TEACHER,
-                "pramilapalde@gmail.com"));
-        userService.addUser(new User("chetanpalde","chetanpalde", UserType.ADMIN,
-                "chetanpalde@gmail.com"));
-        userService.addUser(new User("siddhantpalde","siddhantpalde", UserType.STUDENT,
-                "siddhantpalde@gmail.com"));
-        userService.addUser(new User("mayuripalde","mayuripalde", UserType.STUDENT,
-                "mayuripalde@gmail.com"));
-    }
+//    private static void addAllUsers() {
+//        UserService userService = new UserServiceImpl();
+//        userService.addUser(new User("popatpalde","popatpalde", UserType.LIBRARIAN,
+//                "popatpalde@gmail.com"));
+//        userService.addUser(new User("pramilapalde","pramilapalde", UserType.TEACHER,
+//                "pramilapalde@gmail.com"));
+//        userService.addUser(new User("chetanpalde","chetanpalde", UserType.ADMIN,
+//                "chetanpalde@gmail.com"));
+//        userService.addUser(new User("siddhantpalde","siddhantpalde", UserType.STUDENT,
+//                "siddhantpalde@gmail.com"));
+//        userService.addUser(new User("mayuripalde","mayuripalde", UserType.STUDENT,
+//                "mayuripalde@gmail.com"));
+//    }
     private static void  addInitialData() {
         BookService bookService = new BookServiceImpl();
         bookService.addBook(new Book("PopatBook",450,"PopatPalde"));
@@ -85,8 +87,6 @@ public class Main {
 
     public static void mainLogin(){
         User user = loginUser();
-        System.out.println("Merge Conflict");
-        System.out.println("Merge Conflict");
         if(user != null) {
             try {
                 switch (user.getRole()) {
@@ -110,7 +110,7 @@ public class Main {
                 mainLogin();
             }
         } else {
-            System.out.println("Wrong credentials");
+            System.out.println("\n!!!! Wrong credentials !!!!\n!!!! TRY AGAIN !!!!\n");
             mainLogin();
         }
     }

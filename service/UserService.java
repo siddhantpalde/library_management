@@ -3,6 +3,8 @@ package org.example.service;
 import org.example.entity.User;
 import org.example.entity.UserType;
 
+import java.sql.SQLException;
+
 public interface UserService {
     void addUserDetails();
 
@@ -11,10 +13,12 @@ public interface UserService {
 
     UserType assignUserType(int role);
 
-    void deleteUser();
+    void deleteUser() throws SQLException;
 
     void printAllUsers();
 
 
     User searchUser();
+
+    void printUsers();
 }
