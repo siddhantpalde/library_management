@@ -1,14 +1,15 @@
 package org.library_management.service;
 
-import org.library_management.Main;
-import org.library_management.entity.User;
 
-import java.util.Scanner;
+import org.example.Main;
+import org.example.entity.User;
+import org.example.utility.InputReader;
+
+
 
 public class StudentServiceImpl implements StudentService{
     @Override
     public void studentMenu(User user){
-        Scanner scanner = new Scanner(System.in);
         BookService bookService = new BookServiceImpl();
         int choice;
         do {
@@ -17,7 +18,7 @@ public class StudentServiceImpl implements StudentService{
             System.out.println("1.Show Issued Books");
             System.out.println("2.Show Avaliable Books");
             System.out.println("4.Logout");
-            choice = scanner.nextInt();
+            choice = InputReader.getNumbers();
 
             switch (choice){
                 case 1:

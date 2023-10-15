@@ -3,6 +3,8 @@ package org.library_management.service;
 import org.library_management.entity.User;
 import org.library_management.entity.UserType;
 
+import java.sql.SQLException;
+
 public interface UserService {
     void addUserDetails();
 
@@ -11,10 +13,12 @@ public interface UserService {
 
     UserType assignUserType(int role);
 
-    void deleteUser();
+    void deleteUser() throws SQLException;
 
     void printAllUsers();
 
 
     User searchUser();
+
+    void printUsers();
 }

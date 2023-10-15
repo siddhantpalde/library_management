@@ -1,42 +1,46 @@
 package org.library_management.service;
 
-import org.library_management.database.Data;
-import org.library_management.entity.User;
-import org.library_management.entity.UserType;
+
+import org.example.database.Data;
+import org.example.entity.User;
+import org.example.entity.UserType;
+import org.example.utility.InputReader;
+
+import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Base64;
-import java.util.Scanner;
 
 
 public class UserServiceImpl implements UserService {
     @Override
     public void addUserDetails(){
-        User user = new User();
-        Scanner scanner = new Scanner(System.in);
+        User user;
 
         System.out.println("Enter UserName For New User : ");
-        String name = scanner.next();
+        String name = InputReader.getString();
         System.out.println("Enter PassWord");
-        String password = scanner.next();
+        String password = InputReader.getString();
         System.out.println("Enter Role : ");
         System.out.println("\t1.ADMIN");
         System.out.println("\t2.LIBRARIAN");
         System.out.println("\t3.STUDENT");
         System.out.println("\t4.TEACHER");
         System.out.println("Enter your choice : ");
-        int role = scanner.nextInt();
+        int role = InputReader.getNumbers();
         System.out.println("Enter Email id :");
-        String email = scanner.next();
-        if(!Data.checkUserByEmail(email)){
+        String email = InputReader.getString();
+//        if(!Data.checkUserByEmail(email)){
             user = new User(name,password,assignUserType(role),email);
             addUser(user);
-            System.out.println("User Succesfully added as \n"
-                            +"\nUser ID : "+ user.getUserId()
-                            + "\nUser Name"+name
-                            +"\nEmail Id : "+user.getEmailId()
-                            +" \nUser Type : " +assignUserType(role)
-                    );
-        }
+//            System.out.println("User Succesfully added as \n"
+//                            +"\nUser ID : "+ user.getUserId()
+//                            + "\nUser Name"+name
+//                            +"\nEmail Id : "+user.getEmailId()
+//                            +" \nUser Type : " +assignUserType(role)
+//                    );
+//        }
+
 
     }
     @Override
@@ -45,7 +49,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encodedPassword);
         String newUserId = "User_"+System.nanoTime();
         user.setUserId(newUserId);
-        Data.addUser(user);
+        Data.insertUser(user);
     }
     @Override
     public UserType assignUserType(int role){
@@ -65,11 +69,10 @@ public class UserServiceImpl implements UserService {
         return userRole;
     }
     @Override
-    public void deleteUser(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter User Id to Delete :");
-        String userId = scanner.next();
-        Data.delUserFromDb(userId);
+    public void deleteUser() throws SQLException {
+//        System.out.println("Enter User Id to Delete :");
+//        String userId = InputReader.getString();
+        Data.delUserFromDb();
     }
     @Override
     public void printAllUsers(){
@@ -83,10 +86,9 @@ public class UserServiceImpl implements UserService {
         List<User> userList = Data.getUsers();
         boolean flag = false;
         User user=new User();
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter User ID : ");
-        String id = scanner.next();
+        String id = InputReader.getString();
 
         for (User users : userList){
             if((users.getUserId()).equals(id)){
@@ -103,5 +105,9 @@ public class UserServiceImpl implements UserService {
             System.out.println("NO user Found");
         }
         return user;
+    }
+    @Override
+    public void printUsers(){
+        Data.printAllUsers();
     }
 }

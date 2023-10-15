@@ -1,9 +1,12 @@
 package org.library_management.service;
 
 import java.util.*;
-import org.library_management.database.Data;
-import org.library_management.entity.Book;
-import org.library_management.entity.User;
+
+import org.example.database.Data;
+import org.example.entity.Book;
+import org.example.entity.User;
+import org.example.utility.InputReader;
+
 
 
 public class BookServiceImpl implements BookService {
@@ -34,22 +37,19 @@ public class BookServiceImpl implements BookService {
         BookServiceImpl bookService = new BookServiceImpl();
         String bookName,authorName;
         double price;
-        Scanner scanner = new Scanner(System.in);
+
 
         System.out.println("Enter Book Name : ");
-        bookName=scanner.next();
+        bookName = InputReader.getString();
        // System.out.println(bookName);
 
         System.out.println("Enter Author Name : ");
-        authorName=scanner.next();
+        authorName = InputReader.getString();
       //  System.out.println(authorName);
 
         System.out.println("Enter Price of Book : ");
-        price = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.flush();
-      //  Runtime.getRuntime().exec("clear");
-        System.out.println("Flush done!!!");
+
+        price = InputReader.getDoubleNumbers();
         bookService.addBook(new Book(bookName,price,authorName));
     }
 
@@ -64,10 +64,8 @@ public class BookServiceImpl implements BookService {
         UserService userService = new UserServiceImpl();
         List<Book> books = Data.getBooks();
 
-        Scanner scanner = new Scanner(System.in);
-
         System.out.print("Enter Book Name : \n");
-        String bookName = scanner.next();
+        String bookName = InputReader.getString();
         System.out.println("BookName : "+bookName);
         char ch;
 
@@ -75,12 +73,11 @@ public class BookServiceImpl implements BookService {
             if ((book.getBookName()).equals(bookName)){
                 flag = true;
                 System.out.println("Do you want to issue this book (y/n) : \n");
-                ch = scanner.next().charAt(0);
+                ch = InputReader.getString().charAt(0);
 
                 user = userService.searchUser();
                 System.out.println("UserName :"+ user.getUsername());
                 if (( ch == 'y' )||( ch == 'Y' )){
-
                     Data.setIssueBook(book.getBookId(),user);
                     ch='n';
                 }else {
@@ -107,9 +104,8 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public void deleteUser(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter User Id : ");
-        String userId = scanner.next();
+        String userId = InputReader.getString();
         Data.removeUser(userId);
     }
     @Override
