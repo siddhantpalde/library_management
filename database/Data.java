@@ -1,4 +1,5 @@
-package org.example.database;
+package org.library_management.database;
+
 
 import org.example.entity.Author;
 import org.example.entity.Book;
@@ -7,6 +8,7 @@ import org.example.entity.UserType;
 import org.example.service.AdminService;
 import org.example.service.AdminServiceImpl;
 import org.example.utility.InputReader;
+
 
 import java.sql.*;
 import java.util.*;

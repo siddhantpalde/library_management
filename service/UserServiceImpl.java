@@ -1,4 +1,5 @@
-package org.example.service;
+package org.library_management.service;
+
 
 import org.example.database.Data;
 import org.example.entity.User;
@@ -6,6 +7,7 @@ import org.example.entity.UserType;
 import org.example.utility.InputReader;
 
 import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Base64;
 

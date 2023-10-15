@@ -1,5 +1,6 @@
-package org.example;
+package org.library_management;
 import java.util.*;
+
 
 import org.example.database.Data;
 import org.example.entity.Book;
@@ -7,6 +8,7 @@ import org.example.entity.User;
 import org.example.entity.UserType;
 import org.example.service.*;
 import org.example.utility.InputReader;
+
 
 public class Main {
 
@@ -81,8 +83,6 @@ public class Main {
     private static void addBook(){
         BookServiceImpl bookService = new BookServiceImpl();
         String bookName,authorName;
-
-
     }
 
     public static void mainLogin(){

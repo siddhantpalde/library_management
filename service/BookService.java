@@ -1,7 +1,7 @@
-package org.example.service;
+package org.library_management.service;
 
-import org.example.entity.Book;
-import org.example.entity.User;
+import org.library_management.entity.Book;
+import org.library_management.entity.User;
 
 public interface BookService {
     Book addBook(Book book);

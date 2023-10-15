@@ -1,7 +1,7 @@
-package org.example.service;
+package org.library_management.service;
 
-import org.example.database.Data;
-import org.example.entity.User;
+import org.library_management.database.Data;
+import org.library_management.entity.User;
 
 import java.util.Base64;
 import java.util.List;

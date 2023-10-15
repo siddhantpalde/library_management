@@ -1,8 +1,10 @@
-package org.example.service;
+package org.library_management.service;
+
 
 import org.example.Main;
 import org.example.entity.User;
 import org.example.utility.InputReader;
+
 
 
 public class StudentServiceImpl implements StudentService{

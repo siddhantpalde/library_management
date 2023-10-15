@@ -1,10 +1,12 @@
-package org.example.service;
+package org.library_management.service;
 
 import java.util.*;
+
 import org.example.database.Data;
 import org.example.entity.Book;
 import org.example.entity.User;
 import org.example.utility.InputReader;
+
 
 
 public class BookServiceImpl implements BookService {
@@ -46,6 +48,7 @@ public class BookServiceImpl implements BookService {
       //  System.out.println(authorName);
 
         System.out.println("Enter Price of Book : ");
+
         price = InputReader.getDoubleNumbers();
         bookService.addBook(new Book(bookName,price,authorName));
     }

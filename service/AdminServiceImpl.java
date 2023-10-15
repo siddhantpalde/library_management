@@ -1,9 +1,10 @@
-package org.example.service;
+package org.library_management.service;
+
 
 import org.example.Main;
 import org.example.utility.InputReader;
 
-import java.sql.SQLException;
+import java.sql.SQLException; 
 
 
 public class AdminServiceImpl implements AdminService {

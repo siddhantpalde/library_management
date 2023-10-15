@@ -1,4 +1,4 @@
-package org.example.service;
+package org.library_management.service;
 
 public interface LibrarianService {
 

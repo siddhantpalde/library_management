@@ -1,7 +1,7 @@
-package org.example.service;
+package org.library_management.service;
 
-import org.example.entity.User;
-import org.example.entity.UserType;
+import org.library_management.entity.User;
+import org.library_management.entity.UserType;
 
 import java.sql.SQLException;
 
